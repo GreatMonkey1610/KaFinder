@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import DropdownMenu from './Dropdown';
+import DropdownMenu from './DropDown';
 
 const options = [
   { label: 'Option 1', href: '#' },
