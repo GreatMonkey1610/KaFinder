@@ -116,8 +116,9 @@ function LandingPage() {
         >
           Get Started
         </a>
-            <span>This website is still in development, Stay tuned we will release soon<span>
+            
       </section>
+        <h1>This website is still in development, Stay tuned we will release soon<h1>
     </div>
   );
 }
