@@ -110,15 +110,14 @@ function LandingPage() {
         <p className="mt-4 text-lg text-indigo-200">
           Join Kafinder today and start your journey towards self-discovery and personal growth.
         </p>
+        <p>This website is still in development - Stay tuned 😋<p>
         <a
           href="/signup"
           className="mt-8 inline-block bg-white text-indigo-600 px-6 py-3 rounded-md text-lg hover:bg-indigo-50"
         >
           Get Started
-        </a>
-            
+        </a>   
       </section>
-        <h1>This website is still in development, Stay tuned we will release soon<h1>
     </div>
   );
 }
