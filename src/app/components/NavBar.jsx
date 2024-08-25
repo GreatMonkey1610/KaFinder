@@ -4,7 +4,7 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import DropdownMenu from './DropDown';
 
 const options = [
-  { label: 'Option 1', href: '#' },
+  { label: 'Big Five', href: '/Personality-tests/Big-Five-test-Intro' },
   { label: 'Option 2', href: '#' },
   { label: 'Option 3', href: '#' },
 ];
