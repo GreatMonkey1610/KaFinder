@@ -17,11 +17,18 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Navbar/>
-        {children}
-        </body>
-    </html>
+  <html lang="en">
+    <head>
+      <meta name="description" content="Find Your Heart's Way" />
+      <meta property="og:title" content="Kafinder" />
+      <meta property="og:description" content="Kafinder is a place where you can find your self." />
+      <title>KaFinder</title>
+    </head>
+    <body className={inter.className}>
+      <Navbar />
+      {children}
+    </body>
+  </html>
+
   );
 }
