@@ -5,8 +5,14 @@ import Navbar from "./components/NavBar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
+  metadataBase: new URL ['https://kafinder.com/'],
+  keywords: ['kafinder','ka finder','Ka Finder','Ka finder'],
   title: "KaFinder",
   description: "Find Your Heart's Way",
+  openGraph: {
+    title: 'Kafinder',
+    description: 'Kafinder is a place where you can find your self.',
+  },
 };
 
 export default function RootLayout({ children }) {
