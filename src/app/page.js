@@ -1,6 +1,11 @@
 import React from 'react';
 import { FaHeart, FaCompass, FaUsers, FaUserCheck, FaChartLine } from 'react-icons/fa';
 
+export const metadata = {
+  title: 'Kafinder',
+  description: 'A Place where you can explore yourself',
+}
+
 function LandingPage() {
   return (
     <div className="min-h-screen bg-gray-100">
