@@ -1,7 +1,7 @@
 "use client";
 import { useState } from 'react';
-import { auth } from '../firebase/config';
-import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+// import { auth } from '../firebase/config';
+// import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useEffect } from 'react';
@@ -37,16 +37,16 @@ const Signup = () => {
     }
   };
 
-  const handleGoogleSignup = async () => {
-    const provider = new GoogleAuthProvider();
-    try {
-      await signInWithPopup(auth, provider);
-      router.push('/');
-    } catch (error) {
-      setError('An error occurred: ' + error.message);
-      setTimeout(() => setError(''), 2000);
-    }
-  };
+  // const handleGoogleSignup = async () => {
+  //   const provider = new GoogleAuthProvider();
+  //   try {
+  //     await signInWithPopup(auth, provider);
+  //     router.push('/');
+  //   } catch (error) {
+  //     setError('An error occurred: ' + error.message);
+  //     setTimeout(() => setError(''), 2000);
+  //   }
+  // };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
@@ -90,7 +90,7 @@ const Signup = () => {
         
         <div className="text-center mt-4">
           <button
-            onClick={handleGoogleSignup}
+            // onClick={handleGoogleSignup}
             className="w-full bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition"
           >
             Sign Up with Google

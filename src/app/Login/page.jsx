@@ -1,7 +1,7 @@
 "use client";
 import { useState } from 'react';
-import { auth } from '../firebase/config';
-import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+// import { auth } from '../firebase/config';
+// import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -36,16 +36,16 @@ const Login = () => {
     }
   };
 
-  const handleGoogleLogin = async () => {
-    const provider = new GoogleAuthProvider();
-    try {
-      await signInWithPopup(auth, provider);
-      router.push('/');
-    } catch (error) {
-      setError('An error occurred: ' + error.message);
-      setTimeout(() => setError(''), 2000);
-    }
-  };
+  // const handleGoogleLogin = async () => {
+  //   const provider = new GoogleAuthProvider();
+  //   try {
+  //     await signInWithPopup(auth, provider);
+  //     router.push('/');
+  //   } catch (error) {
+  //     setError('An error occurred: ' + error.message);
+  //     setTimeout(() => setError(''), 2000);
+  //   }
+  // };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
@@ -88,7 +88,7 @@ const Login = () => {
         </button>
 
         <button
-          onClick={handleGoogleLogin}
+          // onClick={handleGoogleLogin}
           className="w-full bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition mt-4"
         >
           Login with Google
