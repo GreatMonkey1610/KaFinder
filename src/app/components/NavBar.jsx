@@ -1,8 +1,11 @@
 "use client";
-import React, { useState, useEffect } from 'react';
-import { FaBars, FaTimes, FaUser } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { FaBars, FaTimes, FaUserCircle } from 'react-icons/fa';
 import DropdownMenu from './DropDown';
 import { useRouter } from 'next/navigation';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../firebase/config'; 
+import { signOut } from 'firebase/auth';
 
 const Personality_test_options = [
   { label: 'Big Five', href: '/Personality-tests/Big-Five-test-Intro' },
@@ -13,14 +16,21 @@ const Personality_test_options = [
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [user] = useAuthState(auth);
   const router = useRouter();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
-  const handleDropdownToggle = () => {
-    setDropdownOpen(!dropdownOpen);
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        router.push('/');
+      })
+      .catch((error) => {
+        console.error('Error signing out:', error);
+      });
   };
 
   return (
@@ -44,12 +54,42 @@ const Navbar = () => {
             <a href="#" className="text-gray-900 hover:text-gray-700 transition">
               Contact
             </a>
-            <button
-              className="px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-700 transition"
-              onClick={() => router.push('/Login')}
-            >
-              Log In
-            </button>
+          </div>
+
+          {/* User Authentication Section */}
+          <div className="hidden md:flex items-center gap-4">
+            {user ? (
+              // If the user is signed in, show profile icon with dropdown
+              <div className="relative">
+                <button onClick={() => setDropdownOpen(!dropdownOpen)} className="flex items-center">
+                  <FaUserCircle size={28} className="text-gray-900" />
+                </button>
+                {dropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
+                    <a
+                      href="#"
+                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                    >
+                      Profile
+                    </a>
+                    <button
+                      onClick={handleLogout}
+                      className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              // If the user is not signed in, show Get Started button
+              <button
+                className="px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-700 transition"
+                onClick={() => router.push('/signup')}
+              >
+                Get Started
+              </button>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -73,12 +113,23 @@ const Navbar = () => {
             <a href="#" className="block mt-2 text-gray-900 hover:text-gray-700 transition">
               Contact
             </a>
-            <button
-              className="w-full mt-4 px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-700 transition"
-              onClick={() => router.push('/Login')}
-            >
-              Log In
-            </button>
+            {user ? (
+              <div className="mt-4 w-full flex justify-center">
+                <button
+                  className="px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-700 transition"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <button
+                className="w-full mt-4 px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-700 transition"
+                onClick={() => router.push('/login')}
+              >
+                Log In
+              </button>
+            )}
           </div>
         )}
       </nav>

@@ -1,23 +1,23 @@
 "use client";
 import { useState } from "react";
 import { auth } from "../firebase/config"; 
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
 
-const Login = () => {
+const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const handleLogin = async (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      // Successfully logged in, redirect to the dashboard
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      // Successfully created user, redirect to the dashboard
       router.push("/dashboard");
     } catch (error) {
       setError(error.message);
@@ -29,11 +29,11 @@ const Login = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h1 className="text-2xl font-bold mb-6 text-center">Log In to Your Account</h1>
+        <h1 className="text-2xl font-bold mb-6 text-center">Create Your Account</h1>
 
         {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
 
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleSignup}>
           <div className="mb-4">
             <label className="block text-gray-700 font-medium mb-2" htmlFor="email">
               Email
@@ -69,14 +69,14 @@ const Login = () => {
             }`}
             disabled={loading}
           >
-            {loading ? "Logging In..." : "Log In"}
+            {loading ? "Creating Account..." : "Sign Up"}
           </button>
         </form>
 
         <p className="mt-4 text-sm text-gray-600 text-center">
-          Don&apos;t have an account?{" "}
-          <a href="/signup" className="text-blue-600 hover:underline">
-            Sign up
+          Already have an account?{" "}
+          <a href="/login" className="text-blue-600 hover:underline">
+            Log in
           </a>
         </p>
       </div>
@@ -84,4 +84,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
